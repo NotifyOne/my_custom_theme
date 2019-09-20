@@ -23,6 +23,9 @@
 #}
 <span{{ attributes }}>
   {%- for item in items -%}
-    {{ item.content }} ({{ nid }})
+    {{ item.content }}
+    {% if nid %}
+      ({{ nid }})
+    {% endif %}
   {%- endfor -%}
 </span>
