@@ -12,6 +12,8 @@
  */
 function my_custom_theme_preprocess_field__node__title(&$variables) {
   $node = \Drupal::request()->attributes->get('node');
-  $nid = $node->id();
+  if ($node instanceof \Drupal\node\Entity\Node) {
+    $nid = $node->id();
     $variables['nid'] = $nid;
+  }
 }
