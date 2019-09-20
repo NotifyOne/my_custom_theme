@@ -43,7 +43,12 @@
  * - page.content: The main content of the current page.
  * - page.sidebar_first: Items for the first sidebar.
  * - page.sidebar_second: Items for the second sidebar.
- * - page.footer: Items for the footer region.
+ * - page.footer_first: First footer region.
+ * - footer_second: Second Footer region.
+ * - footer_third: Third Footer region.
+ * - footer_fourth: Fourth Footer region.
+ * - footer_copyright_left: Copyright Footer Left region.
+ * - footer_copyright_right: Copyright Footer Right region.
  *
  * @ingroup templates
  *
@@ -158,20 +163,6 @@
     </div>
   </div>
 {% endblock %}
-
-{#{% if page.footer %}#}
-{#  {% block footer %}#}
-{#    <footer class="footer {{ container }}" role="contentinfo">#}
-{#      {{ page.footer }}#}
-{#    </footer>#}
-{#  {% endblock %}#}
-{#{% endif %}#}
-
-{# footer lists:#}
-{#footer_first: "First Footer"#}
-{#footer_second: "Second Footer"#}
-{#footer_third: "Third Footer"#}
-{#footer_fourth: "Fourth Footer"#}
 
 {% if page.footer_first %}
   {% block footer_first %}

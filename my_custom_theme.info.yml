@@ -15,7 +15,6 @@ regions:
   content: 'Content'
   sidebar_first: 'Primary'
   sidebar_second: 'Secondary'
-#  footer: 'Footer'
   footer_first: "First Footer"
   footer_second: "Second Footer"
   footer_third: "Third Footer"
