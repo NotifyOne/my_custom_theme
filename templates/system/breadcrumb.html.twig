@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ *
+ * @ingroup templates
+ */
+#}
+{% if breadcrumb %}
+  {% set sitePath = url('<front>')['#markup']|trim('/', 'right') %}
+  <ol class="breadcrumb">
+    {% for item in breadcrumb %}
+      <li {{ item.attributes }}>
+        {% if item.url %}
+          <a href="{{ item.url }}" title="{{ sitePath ~ item.url}}">
+            {{ item.text }}
+          </a>
+        {% else %}
+          {{ item.text }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}
