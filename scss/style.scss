@@ -1,10 +1,4 @@
 @import "variables";
 
 @import "./bootstrap/bootstrap";
-
-footer {
-  background-color: black;
-  border:solid 1px greenyellow;
-  box-sizing: border-box;
-  overflow: hidden;
-}
+@import "input";

@@ -5930,8 +5930,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-footer {
-  background-color: black;
-  border: solid 1px greenyellow;
-  box-sizing: border-box;
-  overflow: hidden; }
+.my-custom-theme--input-types {
+  display: inline-block;
+  font-size: 0.8em; }
