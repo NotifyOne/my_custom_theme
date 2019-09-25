@@ -1,0 +1,15 @@
+{
+    "name": "notifyone/my_custom_theme",
+    "description": "Practic task",
+    "type": "drupal-theme",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "NotifyOne",
+            "email": "anton220812@gmail.com"
+        }
+    ],
+    "require": {
+        "drupal/bootstrap": "^3.20"
+    }
+}
