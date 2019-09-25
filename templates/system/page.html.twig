@@ -60,38 +60,38 @@
 {# Navbar #}
 {% if page.navigation or page.navigation_collapsible %}
   {% block navbar %}
-    {%
-      set navbar_classes = [
-        'navbar',
-        theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
-        theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
-      ]
-    %}
-    <header{{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
+    {% set navbar_classes = [
+      'navbar',
+      theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
+      theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
+    ] %}
+    <header{{ navbar_attributes.addClass(navbar_classes) }} id="navbar"
+                                                            role="banner">
       {% if not navbar_attributes.hasClass(container) %}
-        <div class="{{ container }}">
-      {% endif %}
-      <div class="navbar-header">
-        {{ page.navigation }}
-        {# .btn-navbar is used as the toggle for collapsed navbar content #}
-        {% if page.navigation_collapsible %}
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-            <span class="sr-only">{{ 'Toggle navigation'|t }}</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+      <div class="{{ container }}">
         {% endif %}
-      </div>
+        <div class="navbar-header">
+          {{ page.navigation }}
+          {# .btn-navbar is used as the toggle for collapsed navbar content #}
+          {% if page.navigation_collapsible %}
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+              <span class="sr-only">{{ 'Toggle navigation'|t }}</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          {% endif %}
+        </div>
 
-      {# Navigation (collapsible) #}
-      {% if page.navigation_collapsible %}
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          {{ page.navigation_collapsible }}
-        </div>
-      {% endif %}
-      {% if not navbar_attributes.hasClass(container) %}
-        </div>
+        {# Navigation (collapsible) #}
+        {% if page.navigation_collapsible %}
+          <div id="navbar-collapse" class="navbar-collapse collapse">
+            {{ page.navigation_collapsible }}
+          </div>
+        {% endif %}
+        {% if not navbar_attributes.hasClass(container) %}
+      </div>
       {% endif %}
     </header>
   {% endblock %}
@@ -99,13 +99,14 @@
 
 {# Main #}
 {% block main %}
-  <div role="main" class="main-container {{ container }} js-quickedit-main-content">
+  <div role="main"
+       class="main-container {{ container }} js-quickedit-main-content">
     <div class="row">
 
       {# Header #}
       {% if page.header %}
         {% block header %}
-          <div class="col-sm-12" role="heading">
+          <div class="col-sm-16" role="heading">
             {{ page.header }}
           </div>
         {% endblock %}
@@ -114,21 +115,19 @@
       {# Sidebar First #}
       {% if page.sidebar_first %}
         {% block sidebar_first %}
-          <aside class="col-sm-3" role="complementary">
+          <aside class="col-sm-4" role="complementary">
             {{ page.sidebar_first }}
           </aside>
         {% endblock %}
       {% endif %}
 
       {# Content #}
-      {%
-        set content_classes = [
-          page.sidebar_first and page.sidebar_second ? 'col-sm-6',
-          page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
-          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
-          page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
-        ]
-      %}
+      {% set content_classes = [
+        page.sidebar_first and page.sidebar_second ? 'col-sm-8',
+        page.sidebar_first and page.sidebar_second is empty ? 'col-sm-12',
+        page.sidebar_second and page.sidebar_first is empty ? 'col-sm-12',
+        page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-16'
+      ] %}
       <section{{ content_attributes.addClass(content_classes) }}>
 
         {# Highlighted #}
@@ -155,7 +154,7 @@
       {# Sidebar Second #}
       {% if page.sidebar_second %}
         {% block sidebar_second %}
-          <aside class="col-sm-3" role="complementary">
+          <aside class="col-sm-4" role="complementary">
             {{ page.sidebar_second }}
           </aside>
         {% endblock %}
@@ -164,50 +163,63 @@
   </div>
 {% endblock %}
 
-{% if page.footer_first %}
-  {% block footer_first %}
-    <footer class="footer_first {{ container }} col-md-2" role="contentinfo">
-      {{ page.footer_first }}
-    </footer>
-  {% endblock %}
-{% endif %}
+{% block footer %}
+  <footer role="contentinfo"
+       class="footer  {{ container }}">
+    <div class="region region-footer">
+      {% if page.footer_first %}
+        {% block footer_first %}
+          <div class="footer_first col-sm-2"
+                  role="contentinfo">
+            {{ page.footer_first }}
+          </div>
+        {% endblock %}
+      {% endif %}
 
-{% if page.footer_second %}
-  {% block footer_second %}
-    <footer class="footer_second {{ container }} col-md-4" role="contentinfo">
-      {{ page.footer_second }}
-    </footer>
-  {% endblock %}
-{% endif %}
+      {% if page.footer_second %}
+        {% block footer_second %}
+          <div class="footer_second col-sm-4"
+                  role="contentinfo">
+            {{ page.footer_second }}
+          </div>
+        {% endblock %}
+      {% endif %}
 
-{% if page.footer_third %}
-  {% block footer_third %}
-    <footer class="footer_third {{ container }} col-md-8" role="contentinfo">
-      {{ page.footer_third }}
-    </footer>
-  {% endblock %}
-{% endif %}
+      {% if page.footer_third %}
+        {% block footer_third %}
+          <div class="footer_third col-sm-8"
+                  role="contentinfo">
+            {{ page.footer_third }}
+          </div>
+        {% endblock %}
+      {% endif %}
 
-{% if page.footer_fourth %}
-  {% block footer_fourth %}
-    <footer class="footer_fourth {{ container }} col-md-2" role="contentinfo">
-      {{ page.footer_fourth }}
-    </footer>
-  {% endblock %}
-{% endif %}
+      {% if page.footer_fourth %}
+        {% block footer_fourth %}
+          <div class="footer_fourth col-sm-2"
+                  role="contentinfo">
+            {{ page.footer_fourth }}
+          </div>
+        {% endblock %}
+      {% endif %}
 
-{% if page.footer_copyright_left %}
-  {% block footer_copyright_left %}
-    <footer class="footer_copyright_left {{ container }} col-md-12" role="contentinfo">
-      {{ page.footer_copyright_left }}
-    </footer>
-  {% endblock %}
-{% endif %}
+      {% if page.footer_copyright_left %}
+        {% block footer_copyright_left %}
+          <div class="footer_copyright_left col-sm-12"
+                  role="contentinfo">
+            {{ page.footer_copyright_left }}
+          </div>
+        {% endblock %}
+      {% endif %}
 
-{% if page.footer_copyright_right %}
-  {% block footer_copyright_right %}
-    <footer class="footer_copyright_right {{ container }} col-md-4" role="contentinfo">
-      {{ page.footer_copyright_right }}
-    </footer>
-  {% endblock %}
-{% endif %}
+      {% if page.footer_copyright_right %}
+        {% block footer_copyright_right %}
+          <div class="footer_copyright_right col-sm-4"
+                  role="contentinfo">
+            {{ page.footer_copyright_right }}
+          </div>
+        {% endblock %}
+      {% endif %}
+    </div>
+  </footer>
+{% endblock %}

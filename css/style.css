@@ -5933,3 +5933,6 @@ button.close {
 .my-custom-theme--input-types {
   display: inline-block;
   font-size: 0.8em; }
+
+footer {
+  box-sizing: content-box; }
